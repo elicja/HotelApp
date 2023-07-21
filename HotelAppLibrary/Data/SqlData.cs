@@ -56,4 +56,12 @@ public class SqlData
                      connectionStringName,
                      true);
     }
+
+    public List<BookingFullModel> SearchBookings(string lastName)
+    {
+         return _db.LoadData<BookingFullModel, dynamic>("dbo.spBookings_Search",
+                                                new { lastName, startDate = DateTime.Now.Date },
+                                                connectionStringName,
+                                                true);
+    }
 }
