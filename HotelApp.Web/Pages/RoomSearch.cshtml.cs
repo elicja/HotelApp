@@ -41,8 +41,8 @@ namespace HotelApp.Web.Pages
             return RedirectToPage(new 
             {
                 SearchEnabled = true,
-                StartDateStr = StartDate.ToString("yyyy-MM-dd"),
-                EndDateStr = EndDate.ToString("yyyy-MM-dd")
+                StartDate = StartDate.ToString("yyyy-MM-dd"),
+                EndDate = EndDate.ToString("yyyy-MM-dd")
             });
         }
     }

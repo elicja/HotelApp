@@ -1,3 +1,4 @@
+using HotelApp.Web.Helpers;
 using HotelAppLibrary.Data;
 using HotelAppLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -10,15 +11,12 @@ namespace HotelApp.Web.Pages
         private readonly IDatabaseData _db;
 
         [BindProperty(SupportsGet = true)]
-        public int RoomTypeId { get; set; }
-                
-        [BindProperty(SupportsGet = true)]
-        public string StartDateStr { get; set; }
-        
-        [BindProperty(SupportsGet = true)]
-        public string EndDateStr { get; set; }
+        public int RoomTypeId { get; set; }        
 
+        [BindProperty(SupportsGet = true, BinderType = typeof(CustomDateTimeModelBinder))]
         public DateTime StartDate { get; set; }
+
+        [BindProperty(SupportsGet = true, BinderType = typeof(CustomDateTimeModelBinder))]
         public DateTime EndDate { get; set; }
 
         [BindProperty]
@@ -36,8 +34,6 @@ namespace HotelApp.Web.Pages
 
         public void OnGet()
         {
-            HandleDate();
-
             if (RoomTypeId > 0)
             {
                 RoomType = _db.GetRoomTypeById(RoomTypeId);
@@ -46,23 +42,8 @@ namespace HotelApp.Web.Pages
 
         public IActionResult OnPost()
         {
-            HandleDate();
-
             _db.BookGuest(FirstName, LastName, StartDate, EndDate, RoomTypeId);
             return RedirectToPage("/Index");
-        }
-
-        private void HandleDate()
-        {
-            if (!string.IsNullOrEmpty(StartDateStr))
-            {
-                StartDate = DateTime.Parse(StartDateStr);
-            }
-
-            if (!string.IsNullOrEmpty(EndDateStr))
-            {
-                EndDate = DateTime.Parse(EndDateStr);
-            }
-        }
+        }               
     }    
 }
