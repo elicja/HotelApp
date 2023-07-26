@@ -117,6 +117,25 @@ public class SqliteData : IDatabaseData
 
     public List<BookingFullModel> SearchBookings(string lastName)
     {
-        throw new NotImplementedException();
+        string sql = @"select [b].[Id], [b].[RoomId], [b].[GuestId], [b].[StartDate], [b].[EndDate],
+		               [b].[CheckedIn], [b].[TotalCost], [g].[FirstName], [g].[LastName], 
+		               [r].[RoomNumber], [r].[RoomTypeId], [rt].[Title], [rt].[Description], 
+		               [rt].[Price]
+	            from Bookings b
+	            inner join Guests g on b.GuestId = g.Id
+	            inner join Rooms r on b.RoomId = r.Id
+	            inner join RoomTypes rt on r.RoomTypeId = rt.Id
+	            where g.LastName = @lastName;";
+
+        var output = _db.LoadData<BookingFullModel, dynamic>(sql,
+                                               new { lastName },
+                                               connectionStringName);
+
+        output.ForEach(x => {
+            x.Price = x.Price / 100;
+            x.TotalCost = x.TotalCost / 100;
+        });
+
+        return output;
     }
 }
