@@ -5,37 +5,37 @@ using System.Windows;
 using HotelAppLibrary.Data;
 using HotelAppLibrary.Databases;
 
-namespace HotelApp.Desktop
+namespace HotelApp.Desktop;
+
+/// <summary>
+/// Interaction logic for App.xaml
+/// </summary>
+public partial class App : Application
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
+    public static ServiceProvider serviceProvider;
+
+    protected override void OnStartup(StartupEventArgs e)
     {
-        public static ServiceProvider serviceProvider;
+        base.OnStartup(e);
 
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            base.OnStartup(e);
+        var services = new ServiceCollection();
+        services.AddTransient<MainWindow>();
+        services.AddTransient<CheckInForm>();
+        services.AddTransient<ISqlDataAccess, SqlDataAccess>();
+        services.AddTransient<ISqliteDataAccess, SqliteDataAccess>();
+        services.AddTransient<IDatabaseData, SqlData>();
 
-            var services = new ServiceCollection();
-            services.AddTransient<MainWindow>();
-            services.AddTransient<CheckInForm>();
-            services.AddTransient<ISqlDataAccess, SqlDataAccess>();
-            services.AddTransient<IDatabaseData, SqlData>();
+        var builder = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json");
 
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json");
+        IConfiguration config = builder.Build();
 
-            IConfiguration config = builder.Build();
+        services.AddSingleton(config);
 
-            services.AddSingleton(config);
+        serviceProvider = services.BuildServiceProvider();
+        var mainWindow = serviceProvider.GetService<MainWindow>();
 
-            serviceProvider = services.BuildServiceProvider();
-            var mainWindow = serviceProvider.GetService<MainWindow>();
-
-            mainWindow.Show();
-        }
+        mainWindow.Show();
     }
 }

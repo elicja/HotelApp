@@ -5,35 +5,34 @@ using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows.Controls;
 
-namespace HotelApp.Desktop
+namespace HotelApp.Desktop;
+
+/// <summary>
+/// Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow : Window
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    private readonly IDatabaseData _db;
+
+    public MainWindow(IDatabaseData db)
     {
-        private readonly IDatabaseData _db;
+        InitializeComponent();
+        _db = db;
+    }
 
-        public MainWindow(IDatabaseData db)
-        {
-            InitializeComponent();
-            _db = db;
-        }
+    private void searchForGuest_Click(object sender, RoutedEventArgs e)
+    {
+        List<BookingFullModel> bookings = _db.SearchBookings(lastNameText.Text);
+        resultsList.ItemsSource = bookings;
+    }
 
-        private void searchForGuest_Click(object sender, RoutedEventArgs e)
-        {
-            List<BookingFullModel> bookings = _db.SearchBookings(lastNameText.Text);
-            resultsList.ItemsSource = bookings;
-        }
+    private void CheckInButton_Click(object sender, RoutedEventArgs e)
+    {
+        var checkInForm = App.serviceProvider.GetService<CheckInForm>();
+        var model = (BookingFullModel)((Button)e.Source).DataContext;
 
-        private void CheckInButton_Click(object sender, RoutedEventArgs e)
-        {
-            var checkInForm = App.serviceProvider.GetService<CheckInForm>();
-            var model = (BookingFullModel)((Button)e.Source).DataContext;
+        checkInForm.PopulateCheckInInfo(model);
 
-            checkInForm.PopulateCheckInInfo(model);
-
-            checkInForm.Show();
-        }
+        checkInForm.Show();
     }
 }
