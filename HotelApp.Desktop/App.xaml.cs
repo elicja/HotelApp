@@ -18,17 +18,20 @@ public partial class App : Application
     {
         base.OnStartup(e);
 
-        var services = new ServiceCollection();
-        services.AddTransient<MainWindow>();
-        services.AddTransient<CheckInForm>();
-        services.AddTransient<ISqlDataAccess, SqlDataAccess>();
-        services.AddTransient<ISqliteDataAccess, SqliteDataAccess>();
-
         var builder = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json");
 
         IConfiguration config = builder.Build();
+
+        var services = new ServiceCollection();
+        services.AddTransient<MainWindow>();
+        services.AddTransient<CheckInForm>();
+        services.AddTransient<ISqlDataAccess, SqlDataAccess>();
+        services.AddTransient<ISqliteDataAccess, SqliteDataAccess>();
+        services.AddTransient<IEFDataAccess, EFDataAccess>();
+
+        
 
         services.AddSingleton(config);
 
@@ -40,6 +43,10 @@ public partial class App : Application
         else if (dbChoice == "sqlite")
         {
             services.AddTransient<IDatabaseData, SqliteData>();
+        }
+        else if (dbChoice == "ef")
+        {
+            services.AddTransient<IDatabaseData, EFDataAccess>();
         }
         else
         {
