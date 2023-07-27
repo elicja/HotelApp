@@ -1,4 +1,4 @@
-﻿using HotelAppLibrary.Data;
+﻿using HotelAppLibrary.Interfaces;
 using HotelAppLibrary.Models;
 using System;
 using System.Windows;

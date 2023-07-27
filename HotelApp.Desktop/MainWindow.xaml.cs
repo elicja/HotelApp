@@ -1,9 +1,9 @@
-﻿using HotelAppLibrary.Data;
-using HotelAppLibrary.Models;
+﻿using HotelAppLibrary.Models;
 using System.Collections.Generic;
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows.Controls;
+using HotelAppLibrary.Interfaces;
 
 namespace HotelApp.Desktop;
 

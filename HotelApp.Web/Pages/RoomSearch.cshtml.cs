@@ -1,4 +1,4 @@
-using HotelAppLibrary.Data;
+using HotelAppLibrary.Interfaces;
 using HotelAppLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;

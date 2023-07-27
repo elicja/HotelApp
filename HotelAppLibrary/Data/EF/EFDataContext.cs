@@ -2,13 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace HotelAppLibrary.Databases;
+namespace HotelAppLibrary.Data.EF;
 
-public class DataContext : DbContext
+public class EFDataContext : DbContext
 {
     IConfiguration _configuration;
 
-    public DataContext(IConfiguration configuration)
+    public EFDataContext(IConfiguration configuration)
     {
         _configuration = configuration;
     }

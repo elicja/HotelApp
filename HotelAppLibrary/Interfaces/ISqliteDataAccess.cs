@@ -1,4 +1,4 @@
-﻿namespace HotelAppLibrary.Databases
+﻿namespace HotelAppLibrary.Interfaces
 {
     public interface ISqliteDataAccess
     {

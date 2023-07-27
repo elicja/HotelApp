@@ -1,6 +1,6 @@
 ﻿using HotelAppLibrary.Models;
 
-namespace HotelAppLibrary.Data
+namespace HotelAppLibrary.Interfaces
 {
     public interface IDatabaseData
     {

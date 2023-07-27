@@ -1,9 +1,10 @@
 ﻿using Dapper;
+using HotelAppLibrary.Interfaces;
 using Microsoft.Extensions.Configuration;
 using System.Data;
 using System.Data.SQLite;
 
-namespace HotelAppLibrary.Databases;
+namespace HotelAppLibrary.Data.Sqllite;
 
 public class SqliteDataAccess : ISqliteDataAccess
 {

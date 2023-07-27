@@ -1,7 +1,7 @@
-﻿using HotelAppLibrary.Databases;
+﻿using HotelAppLibrary.Interfaces;
 using HotelAppLibrary.Models;
 
-namespace HotelAppLibrary.Data;
+namespace HotelAppLibrary.Data.Sql;
 
 public class SqlData : IDatabaseData
 {
@@ -49,8 +49,8 @@ public class SqlData : IDatabaseData
                      {
                          roomId = availableRooms.First().Id,
                          guestId = guest.Id,
-                         startDate = startDate,
-                         endDate = endDate,
+                         startDate,
+                         endDate,
                          totalCost = timeStaying.Days * roomType.Price
                      },
                      connectionStringName,

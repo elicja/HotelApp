@@ -2,8 +2,10 @@
 using Microsoft.Extensions.DependencyInjection;
 using System.IO;
 using System.Windows;
-using HotelAppLibrary.Data;
-using HotelAppLibrary.Databases;
+using HotelAppLibrary.Interfaces;
+using HotelAppLibrary.Data.EF;
+using HotelAppLibrary.Data.Sqllite;
+using HotelAppLibrary.Data.Sql;
 
 namespace HotelApp.Desktop;
 

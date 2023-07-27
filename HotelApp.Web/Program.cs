@@ -1,5 +1,7 @@
-using HotelAppLibrary.Data;
-using HotelAppLibrary.Databases;
+using HotelAppLibrary.Data.EF;
+using HotelAppLibrary.Data.Sql;
+using HotelAppLibrary.Data.Sqllite;
+using HotelAppLibrary.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 

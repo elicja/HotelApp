@@ -1,9 +1,10 @@
 ﻿using Dapper;
+using HotelAppLibrary.Interfaces;
 using Microsoft.Extensions.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace HotelAppLibrary.Databases;
+namespace HotelAppLibrary.Data.Sql;
 
 public class SqlDataAccess : ISqlDataAccess
 {

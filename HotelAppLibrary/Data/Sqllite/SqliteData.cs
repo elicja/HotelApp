@@ -1,7 +1,7 @@
-﻿using HotelAppLibrary.Databases;
+﻿using HotelAppLibrary.Interfaces;
 using HotelAppLibrary.Models;
 
-namespace HotelAppLibrary.Data;
+namespace HotelAppLibrary.Data.Sqllite;
 
 public class SqliteData : IDatabaseData
 {
@@ -64,8 +64,8 @@ public class SqliteData : IDatabaseData
                      {
                          roomId = availableRooms.First().Id,
                          guestId = guest.Id,
-                         startDate = startDate,
-                         endDate = endDate,
+                         startDate,
+                         endDate,
                          totalCost = timeStaying.Days * roomType.Price
                      },
                      connectionStringName);
@@ -130,7 +130,8 @@ public class SqliteData : IDatabaseData
                                                new { lastName },
                                                connectionStringName);
 
-        output.ForEach(x => {
+        output.ForEach(x =>
+        {
             x.Price = x.Price / 100;
             x.TotalCost = x.TotalCost / 100;
         });
