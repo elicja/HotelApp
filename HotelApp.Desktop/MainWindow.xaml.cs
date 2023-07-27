@@ -22,7 +22,7 @@ public partial class MainWindow : Window
 
     private void searchForGuest_Click(object sender, RoutedEventArgs e)
     {
-        List<BookingFullModel> bookings = _db.SearchBookings(lastNameText.Text);
+        List<BookingFullModel> bookings = _db.SearchBookings(firstNameText.Text,lastNameText.Text);
         resultsList.ItemsSource = bookings;
     }
 

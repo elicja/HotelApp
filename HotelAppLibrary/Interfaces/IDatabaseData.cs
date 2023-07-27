@@ -8,6 +8,6 @@ namespace HotelAppLibrary.Interfaces
         void CheckInGuest(int bookingId);
         List<RoomTypeModel> GetAvailableRoomTypes(DateTime startDate, DateTime endDate);
         RoomTypeModel GetRoomTypeById(int id);
-        List<BookingFullModel> SearchBookings(string lastName);
+        List<BookingFullModel> SearchBookings(string firstName, string lastName);
     }
 }

@@ -114,7 +114,7 @@ public class SqliteData : IDatabaseData
                                                     connectionStringName).FirstOrDefault();
     }
 
-    public List<BookingFullModel> SearchBookings(string lastName)
+    public List<BookingFullModel> SearchBookings(string firstName, string lastName)
     {
         string sql = @"select [b].[Id], [b].[RoomId], [b].[GuestId], [b].[StartDate], [b].[EndDate],
 		               [b].[CheckedIn], [b].[TotalCost], [g].[FirstName], [g].[LastName], 
@@ -124,10 +124,10 @@ public class SqliteData : IDatabaseData
 	            inner join Guests g on b.GuestId = g.Id
 	            inner join Rooms r on b.RoomId = r.Id
 	            inner join RoomTypes rt on r.RoomTypeId = rt.Id
-	            where g.LastName = @lastName;";
+	            where g.LastName = @lastName AND g.FirstName =@firstName;";
 
         var output = _db.LoadData<BookingFullModel, dynamic>(sql,
-                                               new { lastName },
+                                               new { firstName, lastName },
                                                connectionStringName);
 
         output.ForEach(x =>

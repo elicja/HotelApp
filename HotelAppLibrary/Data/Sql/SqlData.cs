@@ -57,7 +57,7 @@ public class SqlData : IDatabaseData
                      true);
     }
 
-    public List<BookingFullModel> SearchBookings(string lastName)
+    public List<BookingFullModel> SearchBookings(string firstName, string lastName)
     {
         return _db.LoadData<BookingFullModel, dynamic>("dbo.spBookings_Search",
                                                new { lastName },

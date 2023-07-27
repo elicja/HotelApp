@@ -1,4 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[spBookings_Search]
+	@firstName nvarchar(50),
 	@lastName nvarchar(50)
 AS
 begin
@@ -12,5 +13,5 @@ begin
 	inner join dbo.Guests g on b.GuestId = g.Id
 	inner join dbo.Rooms r on b.RoomId = r.Id
 	inner join dbo.RoomTypes rt on r.RoomTypeId = rt.Id
-	where g.LastName = @lastName;
+	where g.LastName = @lastName AND g.FirstName =@firstName;
 end

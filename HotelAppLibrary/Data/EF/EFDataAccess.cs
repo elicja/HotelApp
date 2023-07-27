@@ -84,13 +84,13 @@ public class EFDataAccess : IDatabaseData, IEFDataAccess
         return _dataContext.RoomTypes.FirstOrDefault(x => x.Id == id);
     }
 
-    public List<BookingFullModel> SearchBookings(string lastName)
+    public List<BookingFullModel> SearchBookings(string firstName, string lastName)
     {
         List<BookingFullModel> guestBookings = _dataContext.Bookings
             .Include(x => x.Guest)
             .Include(x => x.Room)
                 .ThenInclude(x => x.RoomType)
-            .Where(x => x.Guest.LastName == lastName).ToList();
+            .Where(x => x.Guest.LastName == lastName && x.Guest.FirstName == firstName).ToList();
 
         foreach (var booking in guestBookings)
         {

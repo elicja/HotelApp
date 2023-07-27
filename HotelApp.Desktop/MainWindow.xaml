@@ -21,6 +21,8 @@
                    Text="Search for Guest" FontSize="28" />
 
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+            <TextBox x:Name="firstNameText" MinWidth="200" 
+                     Margin="5"/>
             <TextBox x:Name="lastNameText" MinWidth="200" 
                      Margin="5"/>
             <Button x:Name="searchForGuest" Margin="5" Padding="5"
