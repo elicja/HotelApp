@@ -6,11 +6,11 @@ using Microsoft.Extensions.Configuration;
 
 namespace HotelAppLibrary.Data.EF;
 
-public class EFDataAccess : IDatabaseData, IEFDataAccess
+public class EFData : IDatabaseData
 {
     private readonly EFDataContext _dataContext;
 
-    public EFDataAccess(IConfiguration config)
+    public EFData(IConfiguration config)
     {
         _dataContext = new EFDataContext(config);
     }

@@ -19,7 +19,7 @@ else if (dbChoice == "sqlite")
 else if (dbChoice == "ef")
 {
 
-    builder.Services.AddTransient<IDatabaseData, EFDataAccess>();
+    builder.Services.AddTransient<IDatabaseData, EFData>();
 }
 else
 {
@@ -29,7 +29,6 @@ else
 
 builder.Services.AddTransient<ISqlDataAccess, SqlDataAccess>();
 builder.Services.AddTransient<ISqliteDataAccess, SqliteDataAccess>();
-builder.Services.AddTransient<IEFDataAccess, EFDataAccess>();
 
 var app = builder.Build();
 

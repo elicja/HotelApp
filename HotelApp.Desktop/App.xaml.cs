@@ -30,10 +30,7 @@ public partial class App : Application
         services.AddTransient<MainWindow>();
         services.AddTransient<CheckInForm>();
         services.AddTransient<ISqlDataAccess, SqlDataAccess>();
-        services.AddTransient<ISqliteDataAccess, SqliteDataAccess>();
-        services.AddTransient<IEFDataAccess, EFDataAccess>();
-
-        
+        services.AddTransient<ISqliteDataAccess, SqliteDataAccess>();        
 
         services.AddSingleton(config);
 
@@ -48,7 +45,7 @@ public partial class App : Application
         }
         else if (dbChoice == "ef")
         {
-            services.AddTransient<IDatabaseData, EFDataAccess>();
+            services.AddTransient<IDatabaseData, EFData>();
         }
         else
         {
